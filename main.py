@@ -10,11 +10,8 @@ import scipy.cluster
 import time
 from colorama import *
 import os
-import sys
 
 init(convert=True)
-
-os.system("start /wait cmd /c")
 
 def split():
     print(Fore.YELLOW + 'The image is split into parts...')
