@@ -1,15 +1,15 @@
 from __future__ import print_function
+from pickle import FALSE
 import cv2
 import numpy as np
 import binascii
-import struct
-from PIL import Image
 import scipy
 import scipy.misc
 import scipy.cluster
 import time
-from colorama import *
-import os
+from colorama import init, Fore
+from pathlib import Path
+import sys
 
 init(convert=True)
 
@@ -70,6 +70,10 @@ def drawRectangle():
 print(Fore.GREEN + '')
 imageName = input("Enter the name of the image (it should be in the same directory with the executable program): ")
 
+if Path(imageName).is_file() == False:
+    print(Fore.RED + "File is not exist!")
+    sys.exit("")
+
 img = cv2.imread('./' + imageName)
 
 widhtOfImage = img.shape[1]
@@ -77,6 +81,7 @@ heightOfImage = img.shape[0]
 
 print(Fore.YELLOW + 'Image size is ' + str(widhtOfImage) + 'x' + str(heightOfImage))
 xPieces, yPieces = int(input("number of pieces divided horizontally: ")), int(input("number of pieces divided vertically: "))
+
 if ((xPieces > widhtOfImage) or (yPieces > heightOfImage)):
     print(Fore.RED + 'You must select the number of parts less than or equal to the resolution of the image!')
     sys.exit("")
